@@ -5,7 +5,9 @@
   <title>Response Generator</title>
 </head>
 <body style="font-family: Arial, sans-serif;">
-  <h1>Hey, Samreet!</h1>
+  
+  <h1><a href="journal.html" style="text-decoration: none; color: black;">Hey, Samreet!</a></h1>
+
   <textarea id="textInput" rows="5" cols="50" placeholder="Speak or type here..."></textarea><br><br>
 
   <button onclick="startListening()">🎙️ Speak</button>
@@ -36,17 +38,17 @@
         .join('');
       textInput.value = transcript;
 
-      // Simple response logic
       const cleaned = transcript.trim().toLowerCase();
       if (cleaned.includes("i am worried")) {
-  responseOutput.textContent = "Oh come on, you practiced for this — I bet you're doing great! You know what, just throw in buzzwords like ‘blockchain’ and ‘neural synergy’ — they won’t know what hit ’em. Hehe :)";
-} else if (cleaned.includes("i feel sad")) {
-  responseOutput.textContent = "I'm here for you. It's okay to feel sad sometimes.";
-} else if (cleaned.includes("i feel anxious")) {
-  responseOutput.textContent = "Take a deep breath. You're doing your best.";
-} else {
-  responseOutput.textContent = "";
-}
+        responseOutput.textContent = "Oh come on, you practiced for this — I bet you're doing great! You know what, just throw in buzzwords like ‘blockchain’ and ‘neural synergy’ — they won’t know what hit ’em. Hehe :)";
+      } else if (cleaned.includes("i feel sad")) {
+        responseOutput.textContent = "I'm here for you. It's okay to feel sad sometimes.";
+      } else if (cleaned.includes("i feel anxious")) {
+        responseOutput.textContent = "Take a deep breath. You're doing your best.";
+      } else {
+        responseOutput.textContent = "";
+      }
+    };
 
     recognition.onerror = (event) => {
       alert('Voice recognition error: ' + event.error);
