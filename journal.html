@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Voice Journaling</title>
+  <style>
+    #journalBox {
+      display: none;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Voice Journaling Assistant</h1>
+  <button onclick="startListening()">🎙️ Start Voice Command</button>
+  <div id="journalBox">
+    <h3>Your Journal Entry:</h3>
+    <textarea id="journalText" rows="10" cols="50" placeholder="Speak to write..."></textarea><br><br>
+    <button onclick="downloadJournal()">💾 Save as journal.txt</button>
+  </div>
+
+  <script>
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = 'en-US';
+    recognition.continuous = true;
+    recognition.interimResults = false;
+
+    let isJournaling = false;
+
+    function startListening() {
+      recognition.start();
+    }
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[event.results.length - 1][0].transcript.trim().toLowerCase();
+      console.log("Heard:", transcript);
+
+      if (transcript.includes("journal") && !isJournaling) {
+        // Start journaling mode
+        isJournaling = true;
+        document.getElementById("journalBox").style.display = "block";
+        console.log("Journal mode activated");
+      } else if (isJournaling) {
+        // Append spoken input to textarea
+        document.getElementById("journalText").value += transcript + " ";
+      }
+    };
+
+    recognition.onerror = (event) => {
+      alert('Speech recognition error: ' + event.error);
+    };
+
+    function downloadJournal() {
+      const text = document.getElementById("journalText").value;
+      const blob = new Blob([text], { type: "text/plain" });
+      const anchor = document.createElement("a");
+      anchor.href = URL.createObjectURL(blob);
+      anchor.download = "journal.txt";
+      anchor.click();
+    }
+  </script>
+</body>
+</html>
