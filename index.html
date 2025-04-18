@@ -40,6 +40,8 @@
       const cleaned = transcript.trim().toLowerCase();
       if (cleaned.includes("i feel sad")) {
         responseOutput.textContent = "I'm here for you. It's okay to feel sad sometimes.";
+      } else if (cleaned.includes("i feel anxious")) {
+        responseOutput.textContent = "Take a deep breath. You're doing your best.";
       } else {
         responseOutput.textContent = "";
       }
