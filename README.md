@@ -61,7 +61,25 @@ Built during Auraria Hack 2025, the app offers an accessible, stigma-free space 
 
 You can try the features live here:
 
-`index.html` to get supportive AI-driven responses:  https://your-username.github.io/buddy/
- `journal.html` to speak and save your entries: 
+- `index.html` to get supportive AI-driven responses:  https://your-username.github.io/buddy/
+- `journal.html` to speak and save your entries: https://samreetkp.github.io/buddy/journal.html
+- `avatar.html` to generate a custom mood avatar: https://samreetkp.github.io/buddy/avatar.html
+-  a lo-fi Figma prototype: https://www.figma.com/proto/e9fDBFNQ9yWQdpVhgfG65q/buddy?node-id=1-2&t=knqgcPnZ4nOn0U8z-1
+
+---
+
+## Built With
+
+- HTML, CSS, JavaScript
+- Web Speech API (for voice input)
+- DiceBear API (for avatars)
+- GitHub Pages (for hosting)
+
+---
+
+## Made at Auraria Hack 2025  
+Solo Developer: Samreet Kaur
+
+> Mental health matters — and sometimes, all we need is a safe place to begin.
 
 
