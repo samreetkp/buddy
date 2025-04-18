@@ -1,1 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Response Generator</title>
+</head>
+<body style="font-family: Arial, sans-serif;">
+  <h1>Hey, Samreet!</h1>
+  <textarea id="textInput" rows="5" cols="50" placeholder="Speak or type here..."></textarea><br><br>
 
+  <button onclick="startListening()">🎙️ Speak</button>
+  <button onclick="stopListening()">🛑 Stop</button>
+
+  <p id="responseOutput" style="margin-top: 20px; font-weight: bold;"></p>
+
+  <script>
+    const textInput = document.getElementById('textInput');
+    const responseOutput = document.getElementById('responseOutput');
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+
+    recognition.continuous = true;
+    recognition.interimResults = false;
+    recognition.lang = 'en-US';
+
+    function startListening() {
+      recognition.start();
+    }
+
+    function stopListening() {
+      recognition.stop();
+    }
+
+    recognition.onresult = (event) => {
+      const transcript = Array.from(event.results)
+        .map(result => result[0].transcript)
+        .join('');
+      textInput.value = transcript;
+
+      // Simple response logic
+      const cleaned = transcript.trim().toLowerCase();
+      if (cleaned.includes("i feel sad")) {
+        responseOutput.textContent = "I'm here for you. It's okay to feel sad sometimes.";
+      } else {
+        responseOutput.textContent = "";
+      }
+    };
+
+    recognition.onerror = (event) => {
+      alert('Voice recognition error: ' + event.error);
+    };
+  </script>
+</body>
+</html>
